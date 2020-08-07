@@ -21,11 +21,10 @@ class Cors
     $requestOrigin = $request->headers->get('origin');
 
     if (in_array($requestOrigin, $allowedOrigins)) {
-        return $next($request)
-            ->header('Access-Control-Allow-Origin', $requestOrigin)
-            ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
-            ->header('Access-Control-Allow-Credentials', 'true')
-            ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+          header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: *');
+header('Access-Control-Allow-Headers: *');
+            return $next($request);
     }
 
     return $next($request);
